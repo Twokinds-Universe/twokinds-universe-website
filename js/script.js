@@ -54,29 +54,42 @@ async function fetchSpeechlessAvailability() {
 
 fetchTotalPages();
 
-function isMobileDevice() {
-  const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-
-  const mobileRegex = /android|bb\d+|meego|blackberry|ip(hone|od)|iemobile|kindle|silk|mobile|opera mini|fennec|maemo|windows phone|palm|symbian|bada/i;
-
-  return mobileRegex.test(userAgent) || (window.innerWidth <= 768);
+function setPage(page) {
+  pagesInfo.pageNumber = page + 1;
+  updatePagePreviews();
 }
 
-function redirectBasedOnDevice() {
-  const isRedirected = sessionStorage.getItem('redirected');
-  const queryParams = new URLSearchParams(window.location.search);
+function updatePagePreviews() {
+  const pagePreviewContainer = document.querySelector('.page-preview-container');
+  
+  pagePreviewContainer.innerHTML = '';
 
-  if (!isRedirected) {
-    sessionStorage.setItem('redirected', 'true');
+  let startPage, endPage;
+  if (pagesInfo.pageNumber + 1 < 3) {
+    startPage = 1;
+    endPage = Math.min(lastPageNumber, 5);
+  } else if (pagesInfo.pageNumber + 1 >= lastPageNumber - 2) {
+    endPage = lastPageNumber;
+    startPage = Math.max(1, lastPageNumber - 4);
+  } else {
+    startPage = pagesInfo.pageNumber - 1;
+    endPage = pagesInfo.pageNumber + 3;
+  }
 
-    if (!queryParams.has('l')) {
-      queryParams.set('l', pagesInfo.currentLanguage);
+  for (let i = startPage; i <= endPage; i++) {
+    const preview = document.createElement('a');
+    preview.href = `/?p=${i}`;
+    const img = document.createElement('img');
+    img.src = `https://tkuniverse.space/preview/pages/${i}.png`;
+    img.alt = `Page ${i}`;
+    img.classList.add('page-preview');
+
+    if (i === pagesInfo.pageNumber + 1) {
+      img.classList.add('current-page-preview');
     }
 
-    const targetPage = isMobileDevice() ? 'mobile.html' : 'index.html';
-    const redirectUrl = `${targetPage}?${queryParams.toString()}`;
-
-    window.location.replace(redirectUrl);
+    preview.appendChild(img);
+    pagePreviewContainer.appendChild(preview);
   }
 }
 
@@ -129,6 +142,7 @@ function update() {
 
   lastPageNumber ? pageCounter.textContent = `${pagesInfo.pageNumber + 1}/${lastPageNumber} - ${Math.round(pagesInfo.pageNumber / lastPageNumber * 100)}%` : pageCounter.textContent = `${pagesInfo.pageNumber + 1}/loading...`;
   changePageSize();
+  updatePagePreviews()
   removeGlow();
   updateButtonState();
 };
@@ -154,8 +168,6 @@ document.addEventListener('DOMContentLoaded', function () {
   if (isSpeechlessParam !== null) {
     pagesInfo.isSpeechless = isSpeechlessParam === 'true';
   }
-
-  // redirectBasedOnDevice();
 
   changeUILanguage(pagesInfo.currentLanguage);
   languageSelect.value = pagesInfo.currentLanguage;
