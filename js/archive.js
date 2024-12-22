@@ -169,62 +169,70 @@ async function initialize() {
 
     const archiveContainer = document.getElementById('archive');
 
-    chapters.forEach((chapter) => {
-        const chapterDiv = document.createElement('div');
-        chapterDiv.className = 'chapter';
+chapters.forEach((chapter) => {
+    const chapterDiv = document.createElement('div');
+    chapterDiv.className = 'chapter';
 
-        const chapterHeader = document.createElement('div');
-        chapterHeader.className = 'chapter-header';
-        chapterHeader.textContent = chapter.title;
+    const chapterHeader = document.createElement('div');
+    chapterHeader.className = 'chapter-header';
+    chapterHeader.textContent = chapter.title;
 
-        const chapterDescription = document.createElement('div');
-        chapterDescription.className = 'chapter-description';
-        chapterDescription.innerHTML = chapter.description;
+    const chapterDescription = document.createElement('div');
+    chapterDescription.className = 'chapter-description';
+    chapterDescription.innerHTML = chapter.description;
 
-        const chapterContent = document.createElement('div');
-        chapterContent.className = 'chapter-content';
+    const chapterContent = document.createElement('div');
+    chapterContent.className = 'chapter-content';
+    chapterContent.style.display = 'none'; // Initially hidden
 
-        chapterDiv.appendChild(chapterHeader);
-        chapterDiv.appendChild(chapterDescription);
-        chapterDiv.appendChild(chapterContent);
-        archiveContainer.appendChild(chapterDiv);
+    chapterDiv.appendChild(chapterHeader);
+    chapterDiv.appendChild(chapterDescription);
+    chapterDiv.appendChild(chapterContent);
+    archiveContainer.appendChild(chapterDiv);
 
-        let isLoaded = false;
+    let isLoaded = false;
 
-        chapterHeader.addEventListener('click', () => {
-            chapterContent.style.display = chapterContent.style.display === 'block' ? 'none' : 'block';
-
-            if (!isLoaded && chapterContent.style.display === 'block') {
-                const thumbnailsDiv = document.createElement('div');
-                thumbnailsDiv.className = 'thumbnails';
-
-                for (let i = chapter.start; i <= chapter.end; i++) {
-                    const thumbnailDiv = document.createElement('div');
-                    thumbnailDiv.className = 'thumbnail';
-
-                    const link = document.createElement('a');
-                    link.href = `index.html?p=${i}`;
-
-                    const image = document.createElement('img');
-                    image.src = `https://tkuniverse.space/preview/pages/${i}.png`;
-                    image.alt = `Page ${i}`;
-                    image.className = 'page-preview';
-
-                    const pageNumber = document.createElement('div');
-                    pageNumber.className = 'page-number';
-                    pageNumber.textContent = `Page ${i}`;
-
-                    link.appendChild(image);
-                    thumbnailDiv.appendChild(link);
-                    thumbnailDiv.appendChild(pageNumber);
-                    thumbnailsDiv.appendChild(thumbnailDiv);
-                }
-
-                chapterContent.appendChild(thumbnailsDiv);
-                isLoaded = true;
+    chapterHeader.addEventListener('click', () => {
+        document.querySelectorAll('.chapter-content').forEach((content) => {
+            if (content !== chapterContent) {
+                content.style.display = 'none';
             }
         });
+
+        chapterContent.style.display = chapterContent.style.display === 'block' ? 'none' : 'block';
+
+        if (!isLoaded && chapterContent.style.display === 'block') {
+            const thumbnailsDiv = document.createElement('div');
+            thumbnailsDiv.className = 'thumbnails';
+
+            for (let i = chapter.start; i <= chapter.end; i++) {
+                const thumbnailDiv = document.createElement('div');
+                thumbnailDiv.className = 'thumbnail';
+
+                const link = document.createElement('a');
+                link.href = `index.html?p=${i}`;
+
+                const image = document.createElement('img');
+                image.src = `https://tkuniverse.space/preview/pages/${i}.png`;
+                image.alt = `Page ${i}`;
+                image.className = 'page-preview';
+
+                const pageNumber = document.createElement('div');
+                pageNumber.className = 'page-number';
+                pageNumber.textContent = `Page ${i}`;
+
+                link.appendChild(image);
+                thumbnailDiv.appendChild(link);
+                thumbnailDiv.appendChild(pageNumber);
+                thumbnailsDiv.appendChild(thumbnailDiv);
+            }
+
+            chapterContent.appendChild(thumbnailsDiv);
+            isLoaded = true;
+        }
     });
+});
+
 }
 
 initialize();
