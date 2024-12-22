@@ -4,5 +4,6 @@ Disallow: /private/
 Disallow: /tmp/
 Disallow: /search
 Disallow: /checkout
+Disallow: /archive
 
 Sitemap: https://tkuniverse.space/sitemap.xml
