@@ -61,8 +61,7 @@ function setPage(page) {
 
 function updatePagePreviews() {
   const pagePreviewContainer = document.querySelector('.page-preview-container');
-  
-  pagePreviewContainer.innerHTML = '';
+  const existingPreviews = Array.from(pagePreviewContainer.children);
 
   let startPage, endPage;
   if (pagesInfo.pageNumber + 1 < 3) {
@@ -76,21 +75,45 @@ function updatePagePreviews() {
     endPage = pagesInfo.pageNumber + 3;
   }
 
-  for (let i = startPage; i <= endPage; i++) {
-    const preview = document.createElement('a');
-    preview.href = `/?p=${i}`;
-    const img = document.createElement('img');
-    img.src = `https://tkuniverse.space/preview/pages/${i}.png`;
-    img.alt = `Page ${i}`;
-    img.classList.add('page-preview');
+  const totalPages = endPage - startPage + 1;
 
-    if (i === pagesInfo.pageNumber + 1) {
+  while (existingPreviews.length < totalPages) {
+    const preview = document.createElement('a');
+    const img = document.createElement('img');
+    img.classList.add('page-preview', 'placeholder');
+    preview.appendChild(img);
+    pagePreviewContainer.appendChild(preview);
+    existingPreviews.push(preview);
+  }
+
+  while (existingPreviews.length > totalPages) {
+    pagePreviewContainer.removeChild(existingPreviews.pop());
+  }
+
+  existingPreviews.forEach((preview, index) => {
+    const pageIndex = startPage + index;
+    const img = preview.querySelector('img');
+
+    preview.href = `/?p=${pageIndex}`;
+
+    img.src = `https://tkuniverse.space/preview/pages/${pageIndex}.png`;
+    img.alt = `Page ${pageIndex}`;
+
+    img.classList.remove('current-page-preview');
+
+    if (pageIndex === pagesInfo.pageNumber + 1) {
       img.classList.add('current-page-preview');
     }
 
-    preview.appendChild(img);
-    pagePreviewContainer.appendChild(preview);
-  }
+    img.onload = () => {
+      img.classList.remove('placeholder');
+    };
+
+    img.onerror = () => {
+      img.classList.remove('placeholder');
+      img.src = 'https://tkuniverse.space/img/placeholder.png';
+    };
+  });
 }
 
 function update() {

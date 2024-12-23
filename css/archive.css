@@ -73,10 +73,6 @@ a {
     text-decoration: none;
 }
 
-h1 {
-    color: white;
-}
-
 .license {
     color: var(--license-text-color);
     transition: color 0.3s;
@@ -89,6 +85,19 @@ h1 {
 .logo {
     width: 40px;
 }
+
+.title-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+}
+
+.title-container h1, .title-container span {
+    color: white;
+    font-size: 30px;
+}
+
 
 /* Chapters */
 
@@ -181,4 +190,12 @@ h1 {
     display: flex;
     flex-direction: row;
     gap: 20px
+}
+
+/* Media */
+
+@media only screen and (max-width: 800px) {
+    .thumbnail .page-number {
+        opacity: 1;
+    }
 }

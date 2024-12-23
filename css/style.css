@@ -84,7 +84,7 @@ a {
     position: relative;
     z-index: 1;
     backdrop-filter: blur(50px);
-    height: Calc(100vh - 50px);
+    max-height: Calc(100vh - 50px);
 }
 
 .blurred-page {
@@ -94,7 +94,7 @@ a {
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    height: Calc(100vh - 50px);
+    max-height: Calc(100vh - 50px);
 }
 
 .page-container {
@@ -205,6 +205,7 @@ a {
     flex-direction: column;
     gap: 5px;
 }
+  
 
 /* Media */
 
