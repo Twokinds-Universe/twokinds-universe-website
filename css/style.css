@@ -220,7 +220,7 @@ a {
     
     .image-container img {
         width: 100vw;
-        height: auto;
+        max-height: 100%;
     }
 
     .navigation-container {

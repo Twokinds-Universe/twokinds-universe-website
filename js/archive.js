@@ -8,7 +8,7 @@ async function fetchTotalPages() {
         lastPage = Number(data.lastPage);
     } catch (error) {
         console.error('Error fetching total pages:', error);
-        lastPage = 1500;
+        lastPage = 1242;
     }
 }
 async function initialize() {
@@ -183,7 +183,7 @@ chapters.forEach((chapter) => {
 
     const chapterContent = document.createElement('div');
     chapterContent.className = 'chapter-content';
-    chapterContent.style.display = 'none'; // Initially hidden
+    chapterContent.style.display = 'none';
 
     chapterDiv.appendChild(chapterHeader);
     chapterDiv.appendChild(chapterDescription);
@@ -213,7 +213,7 @@ chapters.forEach((chapter) => {
                 link.href = `index.html?p=${i}`;
 
                 const image = document.createElement('img');
-                image.src = `https://tkuniverse.space/preview/pages/${i}.png`;
+                image.src = `pages/preview/${i}.png`;
                 image.alt = `Page ${i}`;
                 image.className = 'page-preview';
 

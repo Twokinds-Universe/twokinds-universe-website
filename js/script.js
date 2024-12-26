@@ -6,7 +6,7 @@ let pagesInfo = {
   isSpeechless: false,
 };
 
-let lastPageNumber;
+let lastPageNumber = 1242;
 
 async function fetchTotalPages() {
   try {
@@ -16,14 +16,14 @@ async function fetchTotalPages() {
     update();
   } catch (error) {
     console.error('Error fetching total pages:', error);
-    lastPageNumber = 1500;
+    lastPageNumber = 1242;
   }
 }
 
 async function fetchSketchAvailability() {
   let sketchAvailable;
   try {
-    const response = await fetch(`https://tkuniverse.space/sketch/pages/${pagesInfo.pageNumber + 1}.png`);
+    const response = await fetch(`https://tkuniverse.space/pages/sketch/${pagesInfo.pageNumber + 1}.png`);
     if (response.status === 200) {
       sketchAvailable = true;
     } else {
@@ -39,7 +39,7 @@ async function fetchSketchAvailability() {
 async function fetchSpeechlessAvailability() {
   let speechlessAvailable;
   try {
-    const response = await fetch(`https://tkuniverse.space/speechless/pages/${pagesInfo.pageNumber + 1}.png`);
+    const response = await fetch(`https://tkuniverse.space/pages/speechless/${pagesInfo.pageNumber + 1}.png`);
     if (response.status === 200) {
       speechlessAvailable = true;
     } else {
@@ -96,7 +96,7 @@ function updatePagePreviews() {
 
     preview.href = `/?p=${pageIndex}`;
 
-    img.src = `https://tkuniverse.space/preview/pages/${pageIndex}.png`;
+    img.src = `pages/preview/${pageIndex}.png`;
     img.alt = `Page ${pageIndex}`;
 
     img.classList.remove('current-page-preview');
@@ -111,7 +111,7 @@ function updatePagePreviews() {
 
     img.onerror = () => {
       img.classList.remove('placeholder');
-      img.src = 'https://tkuniverse.space/img/placeholder.png';
+      img.src = 'img/placeholder.png';
     };
   });
 }
@@ -131,9 +131,9 @@ function update() {
 
   document.querySelector('.image-container').classList.remove('page-error');
 
-  const imgUrl = `https://tkuniverse.space/${pagesInfo.currentLanguage}/pages/${pagesInfo.pageNumber + 1}.png`;
-  const sketchUrl = `https://tkuniverse.space/sketch/pages/${pagesInfo.pageNumber + 1}.png`;
-  const speechlessUrl = `https://tkuniverse.space/speechless/pages/${pagesInfo.pageNumber + 1}.png`;
+  const imgUrl = `pages/${pagesInfo.currentLanguage}/${pagesInfo.pageNumber + 1}.png`;
+  const sketchUrl = `pages/sketch/${pagesInfo.pageNumber + 1}.png`;
+  const speechlessUrl = `pages/speechless/${pagesInfo.pageNumber + 1}.png`;
   const currentUrl = pagesInfo.isSpeechless ? speechlessUrl : (pagesInfo.isSketch ? sketchUrl : imgUrl);
 
   fetchSketchAvailability().then(sketchAvailable => {
@@ -150,7 +150,7 @@ function update() {
   page.src = currentUrl;
   blurredPage.src = currentUrl;
   downloadButton.href = currentUrl;
-  downloadButton.download = `Twokinds Universe - ${pagesInfo.currentLanguage}${pagesInfo.pageNumber + 1}.png`;
+  downloadButton.download = `${pagesInfo.currentLanguage}${pagesInfo.pageNumber + 1}.png`;
 
   page.onerror = function () {
     this.onerror = null;
@@ -163,9 +163,10 @@ function update() {
     this.src = 'img/placeholder.png';
   };
 
-  lastPageNumber ? pageCounter.textContent = `${pagesInfo.pageNumber + 1}/${lastPageNumber} - ${Math.round(pagesInfo.pageNumber / lastPageNumber * 100)}%` : pageCounter.textContent = `${pagesInfo.pageNumber + 1}/loading...`;
+  <!-- lastPageNumber ? pageCounter.textContent = `${pagesInfo.pageNumber + 1}/${lastPageNumber} - ${Math.round(pagesInfo.pageNumber / lastPageNumber * 100)}%` : pageCounter.textContent = `${pagesInfo.pageNumber + 1}/loading...`; --!>
+  pageCounter.textContent = `${pagesInfo.pageNumber + 1}/${lastPageNumber} - ${Math.round(pagesInfo.pageNumber / lastPageNumber * 100)}%`;
   changePageSize();
-  updatePagePreviews()
+  updatePagePreviews();
   removeGlow();
   updateButtonState();
 };
