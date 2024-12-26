@@ -148,7 +148,7 @@ function update() {
   changeUILanguage(pagesInfo.currentLanguage);
   document.querySelector('title').textContent = `Twokinds Universe - Page ${pagesInfo.pageNumber + 1}`;
   page.src = currentUrl;
-  blurredPage.src = currentUrl;
+  // blurredPage.src = currentUrl;
   downloadButton.href = currentUrl;
   downloadButton.download = `${pagesInfo.currentLanguage}${pagesInfo.pageNumber + 1}.png`;
 
@@ -158,10 +158,10 @@ function update() {
     document.querySelector('.image-container').classList.add('page-error');
   };
 
-  blurredPage.onerror = function () {
-    this.onerror = null;
-    this.src = 'img/placeholder.png';
-  };
+  // blurredPage.onerror = function () {
+  //   this.onerror = null;
+  //   this.src = 'img/placeholder.png';
+  // };
 
   // lastPageNumber ? pageCounter.textContent = `${pagesInfo.pageNumber + 1}/${lastPageNumber} - ${Math.round(pagesInfo.pageNumber / lastPageNumber * 100)}%` : pageCounter.textContent = `${pagesInfo.pageNumber + 1}/loading...`;
   pageCounter.textContent = `${pagesInfo.pageNumber + 1}/${lastPageNumber} - ${Math.round(pagesInfo.pageNumber / lastPageNumber * 100)}%`;
@@ -241,7 +241,7 @@ goToForm.addEventListener('submit', function(evt) {
 
 let changePageSize = function () {
   page.className = `page justify-center ${pagesInfo.pageSize}`;
-  blurredPage.className = `blurred-page justify-center ${pagesInfo.pageSize}`;
+  // blurredPage.className = `blurred-page justify-center ${pagesInfo.pageSize}`;
 };
 
 sketchVerButton.addEventListener('click', function() {
@@ -281,14 +281,6 @@ function changeUILanguage(lang) {
 function getQueryParam(param, url = window.location.href) {
   const urlObj = new URL(url);
   return urlObj.searchParams.get(param);
-};
-
-function removeGlow() {
-  if (pagesInfo.isGlow) {
-    blurredPage.classList.remove('hidden');
-  } else {
-    blurredPage.classList.add('hidden');
-  }
 };
 
 function updateButtonState() {

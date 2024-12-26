@@ -38,7 +38,7 @@
         <button onclick="changePage('previous')" class="navigation-button button"><img src="img/arrow.svg"></button> -->
         <div class="image-container">
           <img class="page" alt="Comic Page"></img>
-          <img class="blurred-page" alt="Blurred Comic Page"></img>
+          <!-- <img class="blurred-page" alt="Blurred Comic Page"></img> -->
         </div>
         <!-- <button onclick="changePage('next')" class="navigation-button button"><img src="img/arrow.svg" style="transform: scaleX(-1);"></button>
         <button onclick="changePage('last')" class="navigation-button button"><img src="img/double-arrow.svg" style="transform: scaleX(-1);"></button> -->
@@ -73,12 +73,19 @@
             <input type="number" placeholder="Page Number" id="page-input" class="button" data-placeholder="pageInput"></input>
             <button id="go-to-page-button" class="button" type="submit" data-text="goToPageButton">Go to</button>
           </form>
-          <a href="archive.html"><button class="button" data-text="archiveButton">Archive</button></a>
+          <a href="archive.html" class="button">Archive</a>
         </div>
       </div>
       <div class="island">
-        <p class="title" data-text="licenseTitle">License</p>
-        <a href="https://twokinds.keenspot.com/license/" target="_blank"><p data-text="license" class="license">TWOKINDS, its logo, and all related characters are copyright © 2024 Thomas J. Fischbach. All rights reserved.</p></a>
+        <div>
+          <p class="title">Links</p>
+          <a href="https://twokinds.keenspot.com/" target="_blank"><button class="button">Official Website</button></a>
+          <a href="https://github.com/justrals/twokinds-universe-website" target="_blank"><button class="button">Source Code</button></a>
+        </div>
+        <div>
+          <p class="title" data-text="licenseTitle">License</p>
+          <a href="https://twokinds.keenspot.com/license/" target="_blank"><p data-text="license" class="license">TWOKINDS, its logo, and all related characters are copyright © 2024 Thomas J. Fischbach. All rights reserved.</p></a>
+        </div>
       </div>
     </div>
   </main>

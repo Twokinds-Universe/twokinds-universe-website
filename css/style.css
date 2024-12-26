@@ -74,12 +74,11 @@ a {
 .page {
     position: relative;
     z-index: 1;
-    backdrop-filter: blur(50px);
-    max-width: 600px;
     height: auto;
+    max-width: 50vw;
 }
 
-.blurred-page {
+/* .blurred-page {
     filter: blur(50px);
     position: absolute;
     z-index: 0;
@@ -89,14 +88,14 @@ a {
     max-width: 600px;
     height: auto;
     display: none;
-}
+} */
 
 .page-container {
     display: flex;
     flex-direction: row;
     justify-content: center;
     gap: 10px;
-    height: Calc(100vh - 65px);
+    height: Calc(100vh - 90px);
     overflow-y: auto;
 }
 
@@ -106,7 +105,7 @@ a {
     color: var(--text-color);
     border: 1px solid var(--btn-border-color);
     border-radius: 15px;
-    padding: 5px 20px;
+    padding: 10px 20px;
     box-shadow: var(--btn-box-shadow);
     backdrop-filter: blur(5px);
     transition: background 0.3s, box-shadow 0.3s;
@@ -123,7 +122,6 @@ a {
 .navigation-button {
     width: 100%;
     z-index: 1;
-    padding: 5px 20px;
 }
 
 .navigation-button img {
@@ -149,6 +147,9 @@ a {
     flex: 1 1 calc(33.333% - 16px);
     box-sizing: border-box;
     z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .island-container {
@@ -214,10 +215,6 @@ a {
     
     .page-container .button {
         display: none;
-    }
-
-    .navigation-button, .page-number {
-        padding: 10px 20px;
     }
 
     .navigation-container {
