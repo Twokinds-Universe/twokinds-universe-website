@@ -75,17 +75,20 @@ a {
     position: relative;
     z-index: 1;
     backdrop-filter: blur(50px);
-    max-height: Calc(100vh - 65px);
+    max-width: 600px;
+    height: auto;
 }
 
 .blurred-page {
     filter: blur(50px);
     position: absolute;
     z-index: 0;
-    top: 0;
+    top: -11%;
     left: 50%;
     transform: translateX(-50%);
-    max-height: Calc(100vh - 65px);
+    max-width: 600px;
+    height: auto;
+    display: none;
 }
 
 .page-container {
@@ -94,6 +97,7 @@ a {
     justify-content: center;
     gap: 10px;
     height: Calc(100vh - 65px);
+    overflow-y: auto;
 }
 
 .page-number {
@@ -227,6 +231,8 @@ a {
     .image-container img {
         width: 100vw;
         max-height: 100%;
+        max-width: 100%;
+        top: 0;
     }
 
     .island {
