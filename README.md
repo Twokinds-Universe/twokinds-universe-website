@@ -16,5 +16,5 @@
 
 <h3>Leave a star on my repository if you don't mind, I'd appreciate it ⭐️</h3>
 
-<a href="https://twokinds.keenspot.com/">TWOKINDS, its logo, and all related characters are copyright © 2024 Thomas J. Fischbach. All rights reserved.</a>
+<a href="https://twokinds.keenspot.com/license">TWOKINDS, its logo, and all related characters are copyright © 2024 Thomas J. Fischbach. All rights reserved.</a>
 
