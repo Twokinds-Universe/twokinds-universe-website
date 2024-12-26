@@ -71,20 +71,11 @@ a {
 
 /* Page block styles */
 
-.navigation-button {
-    height: Calc(100vh - 50px);
-    z-index: 1;
-}
-
-.navigation-button img {
-    height: 20px;
-}
-
 .page {
     position: relative;
     z-index: 1;
     backdrop-filter: blur(50px);
-    max-height: Calc(100vh - 50px);
+    max-height: Calc(100vh - 65px);
 }
 
 .blurred-page {
@@ -94,7 +85,7 @@ a {
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    max-height: Calc(100vh - 50px);
+    max-height: Calc(100vh - 65px);
 }
 
 .page-container {
@@ -102,7 +93,7 @@ a {
     flex-direction: row;
     justify-content: center;
     gap: 10px;
-    height: Calc(100vh - 50px);
+    height: Calc(100vh - 65px);
 }
 
 .page-number {
@@ -111,7 +102,7 @@ a {
     color: var(--text-color);
     border: 1px solid var(--btn-border-color);
     border-radius: 15px;
-    padding: 10px 20px;
+    padding: 5px 20px;
     box-shadow: var(--btn-box-shadow);
     backdrop-filter: blur(5px);
     transition: background 0.3s, box-shadow 0.3s;
@@ -122,23 +113,25 @@ a {
     height: auto;
     text-align: center;
     cursor: default;
+    margin: 5px 0 10px;
 }
 
-.navigation-button-alt {
+.navigation-button {
     width: 100%;
     z-index: 1;
+    padding: 5px 20px;
 }
 
-.navigation-button-alt img {
+.navigation-button img {
     height: 10px;
 }
 
 .navigation-container {
-    display: none;
+    display: flex;
     flex-direction: row;
     width: 100vw;
     gap: 5px;
-    margin-top: 10px;
+    margin-top: 5px;
 }
 
 /* Islands */
@@ -151,6 +144,7 @@ a {
     padding: 10px;
     flex: 1 1 calc(33.333% - 16px);
     box-sizing: border-box;
+    z-index: 1;
 }
 
 .island-container {
@@ -209,7 +203,7 @@ a {
 
 /* Media */
 
-@media only screen and (max-width: 845px) {
+@media only screen and (max-width: 800px) {
     .page-container {
         height: auto;
     }
@@ -217,14 +211,22 @@ a {
     .page-container .button {
         display: none;
     }
+
+    .navigation-button, .page-number {
+        padding: 10px 20px;
+    }
+
+    .navigation-container {
+        margin-top: 10px;
+    }
+
+    .page-number {
+        margin: 10px 0;
+    }
     
     .image-container img {
         width: 100vw;
         max-height: 100%;
-    }
-
-    .navigation-container {
-        display: flex;
     }
 
     .island {

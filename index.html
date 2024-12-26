@@ -34,20 +34,20 @@
   <main>
     <div class="">
       <div class="page-container">
-        <button onclick="changePage('first')" class="navigation-button button"><img src="img/double-arrow.svg"></button>
-        <button onclick="changePage('previous')" class="navigation-button button"><img src="img/arrow.svg"></button>
+        <!-- <button onclick="changePage('first')" class="navigation-button button"><img src="img/double-arrow.svg"></button>
+        <button onclick="changePage('previous')" class="navigation-button button"><img src="img/arrow.svg"></button> -->
         <div class="image-container">
           <img class="page" alt="Comic Page"></img>
           <img class="blurred-page" alt="Blurred Comic Page"></img>
         </div>
-        <button onclick="changePage('next')" class="navigation-button button"><img src="img/arrow.svg" style="transform: scaleX(-1);"></button>
-        <button onclick="changePage('last')" class="navigation-button button"><img src="img/double-arrow.svg" style="transform: scaleX(-1);"></button>
+        <!-- <button onclick="changePage('next')" class="navigation-button button"><img src="img/arrow.svg" style="transform: scaleX(-1);"></button>
+        <button onclick="changePage('last')" class="navigation-button button"><img src="img/double-arrow.svg" style="transform: scaleX(-1);"></button> -->
       </div>
       <div class="navigation-container">
-        <button onclick="changePage('first')" class="navigation-button-alt button"><img src="img/double-arrow.svg"></button>
-        <button onclick="changePage('previous')" class="navigation-button-alt button"><img src="img/arrow.svg"></button>
-        <button onclick="changePage('next')" class="navigation-button-alt button"><img src="img/arrow.svg" style="transform: scaleX(-1);"></button>
-        <button onclick="changePage('last')" class="navigation-button-alt button"><img src="img/double-arrow.svg" style="transform: scaleX(-1);"></button>
+        <button onclick="changePage('first')" class="navigation-button button"><img src="img/double-arrow.svg"></button>
+        <button onclick="changePage('previous')" class="navigation-button button"><img src="img/arrow.svg"></button>
+        <button onclick="changePage('next')" class="navigation-button button"><img src="img/arrow.svg" style="transform: scaleX(-1);"></button>
+        <button onclick="changePage('last')" class="navigation-button button"><img src="img/double-arrow.svg" style="transform: scaleX(-1);"></button>
       </div>
       <p class="page-number"></p>
     </div>
@@ -58,14 +58,8 @@
           <button id="sketch-ver-button" class="button" data-text="sketchVerButton">Sketch</button>
           <button id="speechless-ver-button" class="button" data-text="speechlessVerButton" disabled>Speechless</button>
           <select id="language" class="button">
-            <!-- <option value="be">Беларуская</option>
-            <option value="cs">Čeština</option>
-            <option value="de">Deutsch</option> -->
             <option value="en">English</option>
-            <!-- <option value="es">Español</option>
-            <option value="fr">Français</option> -->
             <option value="it">Italiano</option>
-            <!-- <option value="pl">Polski</option> -->
             <option value="ru">Русский</option>
           </select>
           <a id="download"><button class="button" id="download-button" data-text="downloadButton">Download</button></a>
