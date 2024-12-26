@@ -8,18 +8,6 @@ let pagesInfo = {
 
 let lastPageNumber = 1242;
 
-async function fetchTotalPages() {
-  try {
-    const response = await fetch('https://api.tkuniverse.space/');
-    const data = await response.json();
-    lastPageNumber = Number(data.lastPage);
-    update();
-  } catch (error) {
-    console.error('Error fetching total pages:', error);
-    lastPageNumber = 1242;
-  }
-}
-
 async function fetchSketchAvailability() {
   let sketchAvailable;
   try {
@@ -50,13 +38,6 @@ async function fetchSpeechlessAvailability() {
   }
 
   return speechlessAvailable;
-}
-
-fetchTotalPages();
-
-function setPage(page) {
-  pagesInfo.pageNumber = page + 1;
-  updatePagePreviews();
 }
 
 function updatePagePreviews() {
@@ -120,13 +101,12 @@ function update() {
   const url = new URL(window.location.href);
   url.searchParams.set('p', pagesInfo.pageNumber + 1);
   url.searchParams.set('l', pagesInfo.currentLanguage);
-  if (pagesInfo.pageNumber >= 857) {
+  if (fetchSketchAvailability()) {
     url.searchParams.set('s', pagesInfo.isSketch);
-  } else {
-    url.searchParams.delete('s', pagesInfo.isSketch);
-    pagesInfo.isSketch = false;
-  }
-  url.searchParams.set('sp', pagesInfo.isSpeechless);
+  };
+  if (fetchSpeechlessAvailability()) {
+    url.searchParams.set('sp', pagesInfo.isSpeechless);
+  };
   window.history.replaceState({}, '', url.toString());
 
   document.querySelector('.image-container').classList.remove('page-error');
@@ -145,7 +125,6 @@ function update() {
   });
 
   document.querySelector('html').lang = pagesInfo.currentLanguage;
-  changeUILanguage(pagesInfo.currentLanguage);
   document.querySelector('title').textContent = `Twokinds Universe - Page ${pagesInfo.pageNumber + 1}`;
   page.src = currentUrl;
   // blurredPage.src = currentUrl;
@@ -165,9 +144,7 @@ function update() {
 
   // lastPageNumber ? pageCounter.textContent = `${pagesInfo.pageNumber + 1}/${lastPageNumber} - ${Math.round(pagesInfo.pageNumber / lastPageNumber * 100)}%` : pageCounter.textContent = `${pagesInfo.pageNumber + 1}/loading...`;
   pageCounter.textContent = `${pagesInfo.pageNumber + 1}/${lastPageNumber} - ${Math.round(pagesInfo.pageNumber / lastPageNumber * 100)}%`;
-  changePageSize();
   updatePagePreviews();
-  removeGlow();
   updateButtonState();
 };
 
@@ -193,7 +170,6 @@ document.addEventListener('DOMContentLoaded', function () {
     pagesInfo.isSpeechless = isSpeechlessParam === 'true';
   }
 
-  changeUILanguage(pagesInfo.currentLanguage);
   languageSelect.value = pagesInfo.currentLanguage;
 
   update();
@@ -212,7 +188,6 @@ let isVisible = true;
 
 languageSelect.addEventListener('change', function () {
   pagesInfo.currentLanguage = languageSelect.value;
-  changeUILanguage(pagesInfo.currentLanguage);
   update();
 });
 
@@ -239,11 +214,6 @@ goToForm.addEventListener('submit', function(evt) {
   document.getElementById('page-input').value = "";
 });
 
-let changePageSize = function () {
-  page.className = `page justify-center ${pagesInfo.pageSize}`;
-  // blurredPage.className = `blurred-page justify-center ${pagesInfo.pageSize}`;
-};
-
 sketchVerButton.addEventListener('click', function() {
   pagesInfo.isSketch = !pagesInfo.isSketch;
   if (pagesInfo.isSketch) {
@@ -260,24 +230,6 @@ speechlessVerButton.addEventListener('click', function() {
   update();
 });
 
-function changeUILanguage(lang) {
-  const textElements = document.querySelectorAll('[data-text]');
-  textElements.forEach(element => {
-    const key = element.getAttribute('data-text');
-    if (texts[lang] && texts[lang][key]) {
-      element.textContent = texts[lang][key];
-    }
-  });
-
-  const placeholderElements = document.querySelectorAll('[data-placeholder]');
-  placeholderElements.forEach(element => {
-    const key = element.getAttribute('data-placeholder');
-    if (texts[lang] && texts[lang][key]) {
-      element.setAttribute('placeholder', texts[lang][key]);
-    }
-  });
-};
-
 function getQueryParam(param, url = window.location.href) {
   const urlObj = new URL(url);
   return urlObj.searchParams.get(param);
@@ -291,12 +243,6 @@ function updateButtonState() {
     ? texts['en'].returnButton 
     : texts['en'].speechlessVerButton;
 };
-
-function getRandomInt(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
 
 document.addEventListener('keydown', function(event) {
   if (event.shiftKey && event.key === 'ArrowLeft') {
