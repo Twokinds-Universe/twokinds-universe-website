@@ -75,7 +75,7 @@ a {
     position: relative;
     z-index: 1;
     height: auto;
-    max-width: 50vw;
+    /* max-width: 50vw; */
 }
 
 /* .blurred-page {
