@@ -6,7 +6,7 @@ let pagesInfo = {
   isSpeechless: false,
 };
 
-let lastPageNumber = 1242;
+let lastPageNumber = 1243;
 
 async function fetchSketchAvailability() {
   let sketchAvailable;
