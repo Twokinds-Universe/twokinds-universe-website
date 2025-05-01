@@ -8,7 +8,7 @@ async function fetchTotalPages() {
         lastPage = Number(data.lastPage);
     } catch (error) {
         console.error('Error fetching total pages:', error);
-        lastPage = 1243;
+        lastPage = 1255;
     }
 }
 async function initialize() {
@@ -213,7 +213,7 @@ chapters.forEach((chapter) => {
                 link.href = `index.html?p=${i}`;
 
                 const image = document.createElement('img');
-                image.src = `pages/preview/${i}.png`;
+                image.src = `https://twokinds-universe.github.io/pages/preview/${i}.png`;
                 image.alt = `Page ${i}`;
                 image.className = 'page-preview';
 

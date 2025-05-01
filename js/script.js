@@ -6,12 +6,12 @@ let pagesInfo = {
   isSpeechless: false,
 };
 
-let lastPageNumber = 1243;
+let lastPageNumber = 1255;
 
 async function fetchSketchAvailability() {
   let sketchAvailable;
   try {
-    const response = await fetch(`https://tkuniverse.space/pages/sketch/${pagesInfo.pageNumber + 1}.png`);
+    const response = await fetch(`https://twokinds-universe.github.io/pages/sketch/${pagesInfo.pageNumber + 1}.png`);
     if (response.status === 200) {
       sketchAvailable = true;
     } else {
@@ -27,7 +27,7 @@ async function fetchSketchAvailability() {
 async function fetchSpeechlessAvailability() {
   let speechlessAvailable;
   try {
-    const response = await fetch(`https://tkuniverse.space/pages/speechless/${pagesInfo.pageNumber + 1}.png`);
+    const response = await fetch(`https://twokinds-universe.github.io/pages/speechless/${pagesInfo.pageNumber + 1}.png`);
     if (response.status === 200) {
       speechlessAvailable = true;
     } else {
@@ -77,7 +77,7 @@ function updatePagePreviews() {
 
     preview.href = `/?p=${pageIndex}`;
 
-    img.src = `pages/preview/${pageIndex}.png`;
+    img.src = `https://twokinds-universe.github.io/pages/preview/${pageIndex}.png`;
     img.alt = `Page ${pageIndex}`;
 
     img.classList.remove('current-page-preview');
@@ -111,9 +111,9 @@ function update() {
 
   document.querySelector('.image-container').classList.remove('page-error');
 
-  const imgUrl = `pages/${pagesInfo.currentLanguage}/${pagesInfo.pageNumber + 1}.png`;
-  const sketchUrl = `pages/sketch/${pagesInfo.pageNumber + 1}.png`;
-  const speechlessUrl = `pages/speechless/${pagesInfo.pageNumber + 1}.png`;
+  const imgUrl = `https://twokinds-universe.github.io/pages/${pagesInfo.currentLanguage}/${pagesInfo.pageNumber + 1}.png`;
+  const sketchUrl = `https://twokinds-universe.github.io/pages/sketch/${pagesInfo.pageNumber + 1}.png`;
+  const speechlessUrl = `https://twokinds-universe.github.io/pages/speechless/${pagesInfo.pageNumber + 1}.png`;
   const currentUrl = pagesInfo.isSpeechless ? speechlessUrl : (pagesInfo.isSketch ? sketchUrl : imgUrl);
 
   fetchSketchAvailability().then(sketchAvailable => {
