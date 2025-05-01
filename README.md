@@ -4,9 +4,7 @@
 <li>It's <a href="https://twokinds.keenspot.com/">Twokinds webcomic</a> viewer with <b>minimalistic design</b> and better mobile/desktop layout. Also it provides quick access to different <b>fan translations</b> to different languages, <b>speechless</b> and <b>sketch</b> comic versions!</li>
 <h3>Contribute</h3>
 <li>Any type of contribution is welcome. If you want to help with translation into other languages, report a problem or add or finalize a feature I will be extremely grateful!</li>
-<a href="https://github.com/justrals/twokinds-universe-website/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=justrals/twokinds-universe-website" style="height:50px"/>
-</a>
+
 <h3>Screenshots</h3>
 <li>Reader</li>
 <img src="https://github.com/user-attachments/assets/1f709b4c-347e-4a91-bb18-8d334020df14" style="height:200px;"/> <img src="https://github.com/user-attachments/assets/499c9423-5b3e-49e4-b7ae-1ce57c0ed04f" style="height:200px;"/>
