@@ -6,4 +6,4 @@ Disallow: /search
 Disallow: /checkout
 Disallow: /archive
 
-Sitemap: https://tkuniverse.space/sitemap.xml
+Sitemap: https://twokinds.xyz/sitemap.xml
