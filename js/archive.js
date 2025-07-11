@@ -223,4 +223,6 @@ chapters.forEach((chapter) => {
 
 }
 
-initialize();
+document.addEventListener("DOMContentLoaded", () => {
+    initialize();
+});
