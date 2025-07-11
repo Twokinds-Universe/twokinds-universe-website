@@ -1,16 +1,16 @@
-let lastPage;
+let lastPage = 1261;
 
-async function fetchTotalPages() {
+// async function fetchTotalPages() {
     
-    try {
-        const response = await fetch('https://api.tkuniverse.space/');
-        const data = await response.json();
-        lastPage = Number(data.lastPage);
-    } catch (error) {
-        console.error('Error fetching total pages:', error);
-        lastPage = 1261;
-    }
-}
+//     try {
+//         const response = await fetch('https://api.tkuniverse.space/');
+//         const data = await response.json();
+//         lastPage = Number(data.lastPage);
+//     } catch (error) {
+//         console.error('Error fetching total pages:', error);
+//         lastPage = 1261;
+//     }
+// }
 async function initialize() {
     await fetchTotalPages();
 
