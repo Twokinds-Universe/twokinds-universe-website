@@ -12,7 +12,7 @@ let lastPage = 1261;
 //     }
 // }
 async function initialize() {
-    await fetchTotalPages();
+    // await fetchTotalPages();
 
     const chapters = [
         { 
