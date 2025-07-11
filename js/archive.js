@@ -8,7 +8,7 @@ async function fetchTotalPages() {
         lastPage = Number(data.lastPage);
     } catch (error) {
         console.error('Error fetching total pages:', error);
-        lastPage = 1255;
+        lastPage = 1261;
     }
 }
 async function initialize() {
