@@ -75,7 +75,9 @@ function updatePagePreviews() {
     const pageIndex = startPage + index;
     const img = preview.querySelector('img');
 
-    preview.href = `/?p=${pageIndex}`;
+    // preview.href = `/?p=${pageIndex}`;
+
+    preview.onclick = () => goToPage(pageIndex);
 
     img.src = `https://twokinds-universe.github.io/pages/preview/${pageIndex}.png`;
     img.alt = `Page ${pageIndex}`;
@@ -207,10 +209,7 @@ let changePage = function (action) {
 goToForm.addEventListener('submit', function(evt) {
   evt.preventDefault();
   let pageInput = document.getElementById('page-input').valueAsNumber;
-  if (pageInput >= 1 && pageInput <= lastPageNumber) {
-    pagesInfo.pageNumber = pageInput - 1;
-    update();
-  }
+  goToPage(pageInput);
   document.getElementById('page-input').value = "";
 });
 
@@ -255,3 +254,10 @@ document.addEventListener('keydown', function(event) {
     changePage('next');
   }
 });
+
+function goToPage(pageIndex) {
+  if (pageIndex >= 1 && pageIndex <= lastPageNumber) {
+    pagesInfo.pageNumber = pageIndex - 1;
+    update();
+  }
+}
