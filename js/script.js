@@ -7,11 +7,12 @@ let pagesInfo = {
 };
 
 let lastPageNumber = 1261;
+const imageSourceBaseUrl = "https://twokinds-xyz.github.io/pages"
 
 async function fetchSketchAvailability() {
   let sketchAvailable;
   try {
-    const response = await fetch(`https://twokinds-universe.github.io/pages/sketch/${pagesInfo.pageNumber + 1}.png`);
+    const response = await fetch(`${imageSourceBaseUrl}/pages/sketch/${pagesInfo.pageNumber + 1}.png`);
     if (response.status === 200) {
       sketchAvailable = true;
     } else {
@@ -27,7 +28,7 @@ async function fetchSketchAvailability() {
 async function fetchSpeechlessAvailability() {
   let speechlessAvailable;
   try {
-    const response = await fetch(`https://twokinds-universe.github.io/pages/speechless/${pagesInfo.pageNumber + 1}.png`);
+    const response = await fetch(`${imageSourceBaseUrl}/pages/speechless/${pagesInfo.pageNumber + 1}.png`);
     if (response.status === 200) {
       speechlessAvailable = true;
     } else {
@@ -79,7 +80,7 @@ function updatePagePreviews() {
 
     preview.onclick = () => goToPage(pageIndex);
 
-    img.src = `https://twokinds-universe.github.io/pages/preview/${pageIndex}.png`;
+    img.src = `${imageSourceBaseUrl}/pages/preview/${pageIndex}.png`;
     img.alt = `Page ${pageIndex}`;
 
     img.classList.remove('current-page-preview');
@@ -113,9 +114,9 @@ function update() {
 
   document.querySelector('.image-container').classList.remove('page-error');
 
-  const imgUrl = `https://twokinds-universe.github.io/pages/${pagesInfo.currentLanguage}/${pagesInfo.pageNumber + 1}.png`;
-  const sketchUrl = `https://twokinds-universe.github.io/pages/sketch/${pagesInfo.pageNumber + 1}.png`;
-  const speechlessUrl = `https://twokinds-universe.github.io/pages/speechless/${pagesInfo.pageNumber + 1}.png`;
+  const imgUrl = `${imageSourceBaseUrl}/pages/${pagesInfo.currentLanguage}/${pagesInfo.pageNumber + 1}.png`;
+  const sketchUrl = `${imageSourceBaseUrl}/pages/sketch/${pagesInfo.pageNumber + 1}.png`;
+  const speechlessUrl = `${imageSourceBaseUrl}/pages/speechless/${pagesInfo.pageNumber + 1}.png`;
   const currentUrl = pagesInfo.isSpeechless ? speechlessUrl : (pagesInfo.isSketch ? sketchUrl : imgUrl);
 
   fetchSketchAvailability().then(sketchAvailable => {
@@ -127,7 +128,7 @@ function update() {
   });
 
   document.querySelector('html').lang = pagesInfo.currentLanguage;
-  document.querySelector('title').textContent = `Twokinds Universe - Page ${pagesInfo.pageNumber + 1}`;
+  document.querySelector('title').textContent = `Page ${pagesInfo.pageNumber + 1}`;
   page.src = currentUrl;
   // blurredPage.src = currentUrl;
   downloadButton.href = currentUrl;
