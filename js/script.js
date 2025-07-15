@@ -6,7 +6,7 @@ let pagesInfo = {
   isSpeechless: false,
 };
 
-let lastPageNumber = 1261;
+const lastPageNumber = 1262;
 const imageSourceBaseUrl = "https://twokinds-xyz.github.io"
 
 async function fetchSketchAvailability() {
