@@ -1,4 +1,4 @@
-const lastPage = 1262;
+const lastPage = 1264;
 const imageSourceBaseUrl = "https://twokinds-xyz.github.io"
 
 async function initialize() {
